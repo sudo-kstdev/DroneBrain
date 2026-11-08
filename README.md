@@ -9,7 +9,7 @@ The evolved network reaches targets **18% cheaper and roughly 40% faster** than
 the hand-tuned PID it sits on top of.
 
 ---
-https://github.com/sudo-kstdev/DroneBrain/blob/ebb8c05a8dfaa11f2dec3c66ef51fe02a15121cd/GEN_1000%20Neural%20Learning%20Flowchart.png
+![image alt](https://github.com/sudo-kstdev/DroneBrain/blob/ebb8c05a8dfaa11f2dec3c66ef51fe02a15121cd/GEN_1000%20Neural%20Learning%20Flowchart.png)
 
 ## Files
 
