@@ -15,12 +15,12 @@ the hand-tuned PID it sits on top of.
 | File | What it is |
 |---|---|
 | `droneV2.py` | The drone: physics, graphics, and a standard cascaded PID. Knows nothing about GAs or networks. Run it to watch the PID fly. |
-| `gaV2.py` | The network and the genetic algorithm. Imports `droneV2`. Run it to train, resume, or watch the trained net. |
+| `GeneticAlgoDrone.py` | The network and the genetic algorithm. Imports `droneV2`. Run it to train, resume, or watch the trained net. |
 | `best_genome.json` | The trained network — 83 weights. See below. |
 | `best_genome old.json` | An earlier, worse genome, kept for comparison. See below. |
 | `convergence.png` | Best and median cost per generation from the last run. |
 
-`droneV2.py` has no dependency on `gaV2.py`, deliberately. The drone is a drone;
+`droneV2.py` has no dependency on `GeneticAlgoDrone.py`, deliberately. The drone is a drone;
 the network is one of several things that could steer it.
 
 ---
@@ -29,13 +29,13 @@ the network is one of several things that could steer it.
 
 ```bash
 python droneV2.py        # the drone flown by the hand-tuned PID
-python -u gaV2.py        # train / resume / watch, depending on the dials
+python -u GeneticAlgoDrone.py        # train / resume / watch, depending on the dials
 ```
 
 Use `-u` when training. Python buffers output when it isn't a terminal, so
 without it a long run prints nothing and looks like it has hung.
 
-### The dials, at the top of `gaV2.py`
+### The dials, at the top of `GeneticAlgoDrone.py`
 
 ```python
 TRAIN  = True      # False -> skip training, just fly best_genome.json
@@ -217,7 +217,7 @@ Both hold 83 numbers in `[0, 1]` plus the cost they achieved:
 { "cost": 4.793, "genome": [0.51, 0.08, "..."] }
 ```
 
-`gaV2.make_net()` unpacks that list into the network's two weight matrices and
+`GeneticAlgoDrone.make_net()` unpacks that list into the network's two weight matrices and
 two bias vectors. The genome **is** the network.
 
 | File | Cost | What it is |
@@ -231,7 +231,7 @@ values exactly, so the two numbers are directly comparable.
 **Training overwrites `best_genome.json`.** Rename anything you want to keep
 before starting a run — which is exactly what the "old" file is.
 
-`gaV2.py` checks the gene count on load, so a genome saved under a different
+`GeneticAlgoDrone.py` checks the gene count on load, so a genome saved under a different
 architecture is reported as out of date rather than failing with a confusing
 reshape error.
 
